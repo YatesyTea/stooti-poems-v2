@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { Database } from "bun:sqlite";
 
 const app = new Hono();
-const db = new Database("poems.sqlite", { readonly: true });
+const db = new Database("poems.db", { readonly: true });
 
 function generateVal(){
   const currentDate = new Date();
@@ -28,6 +28,7 @@ app.get("/poem", (c) => {
   const val = generateVal();
   const query = db.query(`SELECT * FROM poems WHERE id = ${val} `);
   const payload = query.all() as Poem[];
+  console.log(payload)
   return c.json(payload);
 });
 
