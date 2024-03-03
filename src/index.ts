@@ -28,7 +28,6 @@ app.get("/poem", (c) => {
   const val = generateVal();
   const query = db.query(`SELECT * FROM poems WHERE id = ${val} `);
   const payload = query.all() as Poem[];
-  console.log(payload)
   return c.json(payload);
 });
 
