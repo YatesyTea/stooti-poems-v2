@@ -27,8 +27,7 @@ interface Poem {
 app.get("/", (c) => {
   const val = generateVal();
   const query = db.query(`SELECT * FROM poems WHERE id = ${val} `);
-  const payload = query.all() as Poem[];
-  const selectedData = payload[0];
+  const selectedData = query.get() as Poem;
   const today = new Date();
   return c.html(
     <html lang="en">
