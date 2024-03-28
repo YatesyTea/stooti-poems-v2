@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "bun run --hot src/index.tsx",
-    "build": "bun build --target bun src/index.tsx --outdir ./out --watch"
+    "build": "bun build --target bun src/index.tsx --outdir ./out && bun run ./out/index.js"
   },
   "dependencies": {
     "hono": "^4.0.8"
