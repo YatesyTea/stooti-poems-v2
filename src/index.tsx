@@ -5,9 +5,9 @@ import { Database } from "bun:sqlite";
 const app = new Hono();
 const db = new Database("poems.db", { readonly: true });
 
-app.use("/favicon.ico", serveStatic({ path: "./assets/favicon.ico" }));
-app.use("/style.css", serveStatic({ path: "./style.css" }));
-app.use("/stooti.jpg", serveStatic({ path: "./assets/stooti.jpg" }));
+app.use("/favicon.ico", serveStatic({ path: "./src/assets/favicon.ico" }));
+app.use("/style.css", serveStatic({ path: "./src/style.css" }));
+app.use("/stooti.jpg", serveStatic({ path: "./src/assets/stooti.jpg" }));
 
 function generateVal() {
   const currentDate = new Date();
@@ -47,19 +47,21 @@ app.get("/", (c) => {
         <link rel="stylesheet" href="/style.css" />
       </head>
       <body>
-        <main>
+        <main class="centre-content">
           <img class="rounded-pic" src="/stooti.jpg" alt="stooti" />
           <h1>Stooti's Random Poem of the Day</h1>
           <p>
             Today's Date is {today.getUTCDate()}-{today.getUTCMonth() + 1}-
             {today.getUTCFullYear()}
           </p>
-          <div class="display">
+          <div class="display centre-content">
             <h2>
               Poem #{selectedData.id} - {selectedData.title}
             </h2>
             <h3>by {selectedData.poet}</h3>
-            <p class="line-break-text">{selectedData.poem}</p>
+            <div class="centre-content">
+              <p class="line-break-text">{selectedData.poem}</p>
+            </div>
             {selectedData.tags && (
               <div class="listbox-display">
                 <p>Tags: {selectedData.tags}</p>
