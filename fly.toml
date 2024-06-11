@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for poems-app-v2 on 2024-06-11T18:46:17+01:00
+# fly.toml app configuration file generated for stooti-poems on 2024-06-11T19:10:36+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -17,6 +17,4 @@ primary_region = 'lhr'
   processes = ['app']
 
 [[vm]]
-  memory = '256Mb'
-  cpu_kind = 'shared'
-  cpus = 1
+  size = 'shared-cpu-1x'
