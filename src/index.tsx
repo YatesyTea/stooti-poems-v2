@@ -52,14 +52,12 @@ app.get("/", (c) => {
       <body>
         <main class="centre-content">
           <img class="rounded-pic" src="/stooti.jpg" alt="stooti" />
-          <h1>Stooti's Poem of the Day</h1>
-          <div class="display">
-            <h2 class="subtitile">${selectedData.title} by ${selectedData.poet}</h2>
-            <div class="centre-content">
-              <p class="line-break-text">${selectedData.poem}</p>
-            </div>
-            ${selectedData.tags ? `<div class="listbox-display"><p>Tags: ${processTags(selectedData.tags)}</p></div>` : ''}
+          <h1 class="centre-text">Stooti's Poem of the Day</h1>
+          <h2 class="subtitile centre-text">${selectedData.title} by ${selectedData.poet}</h2>
+          <div class="centre-content">
+            <p class="line-break-text">${selectedData.poem}</p>
           </div>
+          ${selectedData.tags ? `<div class="listbox-display"><p>Tags: ${processTags(selectedData.tags)}</p></div>` : ''}
         </main>
       </body>
     </html>
