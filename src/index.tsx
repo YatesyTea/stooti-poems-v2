@@ -21,6 +21,11 @@ function generateVal() {
   return randomValue;
 }
 
+// Add spaces after commas to make it more human readable.
+function processTags(input: string) {
+  return input.replace(/,/g, ', ');
+}
+
 interface Poem {
   id: number;
   title: string;
@@ -33,14 +38,12 @@ app.get("/", (c) => {
   const val = generateVal();
   const query = db.query(`SELECT * FROM poems WHERE id = ${val} `);
   const selectedData = query.get() as Poem;
-  const today = new Date();
   
-  // Generate the HTML as a string
   const htmlContent = `
     <!DOCTYPE html>
     <html lang="en">
       <head>
-        <title>Stooti's Random Poem of The Day</title>
+        <title>Stooti's Poem of The Day</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Poem of the day for my wonderful girlfriend Stuti Pachisia <3."></meta>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
@@ -49,15 +52,13 @@ app.get("/", (c) => {
       <body>
         <main class="centre-content">
           <img class="rounded-pic" src="/stooti.jpg" alt="stooti" />
-          <h1>Stooti's Random Poem of the Day</h1>
-          <p>Today's Date is ${today.getUTCDate()}-${today.getUTCMonth() + 1}-${today.getUTCFullYear()}</p>
-          <div class="display centre-content">
-            <h2>Poem #${selectedData.id} - ${selectedData.title}</h2>
-            <h3>by ${selectedData.poet}</h3>
+          <h1>Stooti's Poem of the Day</h1>
+          <div class="display">
+            <h2 class="subtitile">${selectedData.title} by ${selectedData.poet}</h2>
             <div class="centre-content">
               <p class="line-break-text">${selectedData.poem}</p>
             </div>
-            ${selectedData.tags ? `<div class="listbox-display"><p>Tags: ${selectedData.tags}</p></div>` : ''}
+            ${selectedData.tags ? `<div class="listbox-display"><p>Tags: ${processTags(selectedData.tags)}</p></div>` : ''}
           </div>
         </main>
       </body>
