@@ -29,4 +29,4 @@ or
 
 ```bun run start```
 
-Changes can be made to the html and request which are all in 1 file.
+Changes can be made to the html and request which are all in 1 file [index.tsx](./src/index.tsx).
